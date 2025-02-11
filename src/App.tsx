@@ -1,18 +1,21 @@
-import React from 'react';
-import './quiz.css';  // Import the CSS file into your App.tsx
-import './index.css';
-import Title from './Title';  // Import Title component
-import Slogan from './Slogan';  // Import Slogan component
-import Questions from './Questions';  // Import the Questions component
+import React, { useState } from "react";
+import "./styles/quiz.css";
+import "./styles/index.css";
+import WelcomePage from "./components/WelcomePage";
+import Questions from "./components/Questions"; 
 
 const App: React.FC = () => {
+  const [quizStarted, setQuizStarted] = useState(false); 
+
   return (
     <div className="container">
-      <Title />
-      <Slogan />
-      <Questions /> {/* Here we add the Questions component */}
+      {quizStarted ? (
+        <Questions />
+      ) : (
+        <WelcomePage onStart={() => setQuizStarted(true)} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
